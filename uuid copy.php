@@ -90,12 +90,10 @@
 			</ul>
 		  </div>
 		</nav>
-    <div style="padding-left:16px">
-        <center>
-        </center>
+  
         <br><br>
                     <div class="row">
-                      <div class="col-md-16" style="padding:10px;background:#FFFF;border-radius: 5px;" >
+                      <div class="col-md-20" style="padding:10px;background:#FFFF;border-radius: 5px;" >
     <h1>Silahkan Melakukan Generate QR Code UUID & Produk</h1>
     <h5>Pada halaman ini anda bisa melakukan qr code generate semua produk sesuai keinginan anda</h5><br>
 
