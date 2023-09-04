@@ -148,6 +148,12 @@
   border: 2px solid #00FF00;
 }
 
+.button12 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #696969;
+}
+
 </style>
 <body>
      <nav class="navbar" style="background:#EEE8AA">
@@ -210,8 +216,15 @@
         </div>
         <hr>
         <div id="content-15" data-section="content-15" class="data-section">
-          <div class="col-md-4">
-
+        <div class="col-md-4">
+            <a href="uuid copy.php"> <img src="scan_ger.jpeg" alt="bride" class="img-middle" /></a>
+            <div class="align-center">
+              <h4><b>All Produk QR Generate UUID </b></h4>
+              <h6>Halaman QR Code Generate UUID Semua Produk</h6>
+              <a href="uuid copy.php"> <button class="button button12" style="resize:none;width:225px;height:50px;"> Open </button></a>
+            </div>  </div>
+        
+        <div class="col-md-4">
             <a href="uuid.php"> <img src="scan_ger.jpeg" alt="bride" class="img-middle" /></a>
             <div class="align-center">
               <h4><b>QR Generate UUID BS 0.25 GR</b></h4>
