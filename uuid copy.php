@@ -128,9 +128,12 @@
                 $stmt = $kon->prepare("INSERT INTO qr_codes (uuid, produk) VALUES (?, ?)");
                 $stmt->bind_param("ss", $uuid, $produk);
                 $stmt->execute();
-
+                $c = 0; // Cyan
+                $m = 0;   // Magenta
+                $y = 0;   // Yellow
+                $k = 100;   // Black
                 // Generate QR code URL using api.qrserver
-                $qrCodeURLs[] = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" . urlencode(json_encode(["uuid" => $uuid, "produk" => $produk]));
+                $qrCodeURLs[] = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" . urlencode(json_encode(["uuid" => $uuid, "produk" => $produk]). "&c=$c&m=$m&y=$y&k=$k");
             }
 
             // Display multiple QR codes in grid
