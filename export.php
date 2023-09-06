@@ -10,24 +10,25 @@ $conn = new mysqli($server,$username,$password,$dbname);
 if($conn->connect_error){
     die("Connection failed" .$conn->connect_error);
 }
-$filename = 'Record Scan QR Code UUID Mini Gold-'.date('Y-m-d').'.csv';
+$filename = 'Absen Shalat Dzuhur Karyawan Mini Gold-'.date('Y-m-d').'.csv';
 
-$query = "SELECT * FROM table_attendance";
+$query = "SELECT * FROM dzuhur";
 $result = mysqli_query($conn,$query);
 
 $array = array();
 
 $file = fopen($filename,"w");
-$array = array("UUID","Waktu Scanner ","Waktu Verifikasi Scanner","Tanggal Scanner","Status");
+$array = array("Nama","Absen Shalat","Absen Selesai Shalat","Tanggal Shalat","Shalat","Status");
 fputcsv($file,$array);
 while($row = mysqli_fetch_array($result)){
-    $STUDENTID =$row['uuid'];
+    $STUDENTID =$row['nama'];
     $TIMEIN =$row['time_scan'];
     $TIMEOUT =$row['TIMEOUT'];
     $LOGDATE =$row['LOGDATE'];
+    $shalat =$row['shalat'];
     $STATUS =$row['STATUS'];
 
-    $array = array($STUDENTID,$TIMEIN,$TIMEOUT,$LOGDATE,$STATUS);
+    $array = array($STUDENTID,$TIMEIN,$TIMEOUT,$LOGDATE,$shalat,$STATUS);
     fputcsv($file,$array);
 }
 fclose($file);

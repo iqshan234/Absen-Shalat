@@ -10,20 +10,20 @@
           die("Koneksi gagal:".mysqli_connect_error());
     }
 
-    if(isset($_POST['uuid'])){
+    if(isset($_POST['nama'])){
         
-        $text =$_POST['uuid'];
+        $text =$_POST['nama'];
 		$date = date('Y-m-d');
 		date_default_timezone_set('Asia/Jakarta');
 		$time = date('H:i:s');
-		$sql ="SELECT * FROM table_attendance WHERE uuid='$text' AND LOGDATE='$date' AND STATUS='Invalid'";
+		$sql ="SELECT * FROM dzuhur WHERE nama='$text' AND LOGDATE='$date' AND shalat='Dzuhur' AND STATUS='Sedang Shalat'";
 		$query=$kon->query($sql);
 		if($query->num_rows>0){
-			$sql = "UPDATE table_attendance SET TIMEOUT='$time', STATUS='Valid' WHERE uuid='$text' AND LOGDATE='$date'";
+			$sql = "UPDATE dzuhur SET TIMEOUT='$time', STATUS='Sudah Selesai Shalat' WHERE nama='$text' AND LOGDATE='$date'";
 			$query=$kon->query($sql);
 			$_SESSION['success'] = 'Scan QR Code Berhasil';
 		}else{
-			$sql = "INSERT INTO table_attendance(uuid,time_scan,LOGDATE,STATUS) VALUES('$text','$time','$date','Invalid')";
+			$sql = "INSERT INTO dzuhur(nama,time_scan,LOGDATE,shalat,STATUS) VALUES('$text','$time','$date','Dzuhur','Sedang Shalat')";
 			if($kon->query($sql) ===TRUE){
 			 $_SESSION['success'] = 'Scan QR Code Berhasil';
 			 }else{
@@ -32,9 +32,9 @@
 		}
 		  
 	}else{
-		$_SESSION['error'] = 'Silahkan Scan UUID QR CODE';
+		$_SESSION['error'] = 'Silahkan Scan nama QR CODE';
 	}
-    header("location: scanner_gold1.php");
+    header("location: dzuhur.php");
 	   
     $kon->close();
 ?>

@@ -1,42 +1,40 @@
 <?php
     session_start();
-    $server = "localhost";
-    $username="root";
+      $host="localhost";
+    $user="root";
     $password="";
-    $dbname="upload_file";
-
-    $conn = new mysqli($server,$username,$password,$dbname);
-
-    if($conn->connect_error){
-        die("Connection failed" .$conn->connect_error);
+    $db="upload_file";
+    
+    $kon = mysqli_connect($host,$user,$password,$db);
+    if (!$kon){
+          die("Koneksi gagal:".mysqli_connect_error());
     }
 
-    if(isset($_POST['uuid'])){
+    if(isset($_POST['nama'])){
         
-        $text =$_POST['uuid'];
+        $text =$_POST['nama'];
 		$date = date('Y-m-d');
 		date_default_timezone_set('Asia/Jakarta');
 		$time = date('H:i:s');
-
-		$sql ="SELECT * FROM scan WHERE uuid='$text' AND LOGDATE='$date' AND STATUS='Invalid'";
-		$query=$conn->query($sql);
+		$sql ="SELECT * FROM ashar WHERE nama='$text' AND LOGDATE='$date' AND shalat='Ashar' AND STATUS='Sedang Shalat'";
+		$query=$kon->query($sql);
 		if($query->num_rows>0){
-			$sql = "UPDATE scan SET TIMEOUT='$time', STATUS='Valid' WHERE uuid='$text' AND LOGDATE='$date'";
-			$query=$conn->query($sql);
+			$sql = "UPDATE ashar SET TIMEOUT='$time', STATUS='Sudah Shalat' WHERE nama='$text' AND LOGDATE='$date'";
+			$query=$kon->query($sql);
 			$_SESSION['success'] = 'Scan QR Code Berhasil';
 		}else{
-			$sql = "INSERT INTO scan(uuid,time_scan,LOGDATE,STATUS) VALUES('$text','$time','$date','Invalid')";
-			if($conn->query($sql) ===TRUE){
+			$sql = "INSERT INTO ashar(nama,time_scan,LOGDATE,shalat,STATUS) VALUES('$text','$time','$date','Ashar','Sedang Shalat')";
+			if($kon->query($sql) ===TRUE){
 			 $_SESSION['success'] = 'Scan QR Code Berhasil';
 			 }else{
-			  $_SESSION['error'] = $conn->error;
+			  $_SESSION['error'] = $kon->error;
 		   }	
 		}
 		  
 	}else{
-		$_SESSION['error'] = 'Silahkan Scan UUID QR CODE Dengan Benar';
+		$_SESSION['error'] = 'Silahkan Scan nama QR CODE';
 	}
-    header("location: scanner_pro1.php");
+    header("location: ashar.php");
 	   
-    $conn->close();
+    $kon->close();
 ?>
