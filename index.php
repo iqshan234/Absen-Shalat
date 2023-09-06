@@ -108,8 +108,8 @@
             <div class="col-md-20" style="padding:10px;background:#F5F5F5;border-radius: 5px;">
             <img src="logo-minigold-small.png"> 
                 <center> 
-                    <a href="scanner_gold1.php"><button class="button button2" style="resize:none;width:500px;height:100px;">Absen Shalat Dzuhur</button></a><br>
-                    <a href="scanner_gold2.php"><button class="button button1" style="resize:none;width:500px;height:100px;">Absen Shalat Ashar</button></a>
+                    <a href="dzuhur.php"><button class="button button2" style="resize:none;width:500px;height:100px;">Absen Shalat Dzuhur</button></a><br>
+                    <a href="ashar.php"><button class="button button1" style="resize:none;width:500px;height:100px;">Absen Shalat Ashar</button></a>
                 </center><br><br>
 </div>
 </div>
